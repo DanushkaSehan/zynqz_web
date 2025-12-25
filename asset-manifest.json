@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/DanushkaSehan/zynqz_web/static/css/main.202631a9.css",
-    "main.js": "/DanushkaSehan/zynqz_web/static/js/main.1fb902e8.js",
-    "static/js/453.f34213be.chunk.js": "/DanushkaSehan/zynqz_web/static/js/453.f34213be.chunk.js",
-    "static/media/back_hero.jpg": "/DanushkaSehan/zynqz_web/static/media/back_hero.2233d6c193c3f36d9d39.jpg",
-    "static/media/breif_1.png": "/DanushkaSehan/zynqz_web/static/media/breif_1.b2fec0fda901f2f85a16.png",
-    "static/media/breif_2.png": "/DanushkaSehan/zynqz_web/static/media/breif_2.9d6fb1eaf964960626a1.png",
-    "static/media/breif_3.png": "/DanushkaSehan/zynqz_web/static/media/breif_3.501b68c7e214f0de49d2.png",
-    "static/media/logo_web_zynqz.png": "/DanushkaSehan/zynqz_web/static/media/logo_web_zynqz.b089ca49c43b466ca4c7.png",
-    "index.html": "/DanushkaSehan/zynqz_web/index.html",
-    "main.202631a9.css.map": "/DanushkaSehan/zynqz_web/static/css/main.202631a9.css.map",
-    "main.1fb902e8.js.map": "/DanushkaSehan/zynqz_web/static/js/main.1fb902e8.js.map",
-    "453.f34213be.chunk.js.map": "/DanushkaSehan/zynqz_web/static/js/453.f34213be.chunk.js.map"
+    "main.css": "/static/css/main.202631a9.css",
+    "main.js": "/static/js/main.3b302c29.js",
+    "static/js/453.f34213be.chunk.js": "/static/js/453.f34213be.chunk.js",
+    "static/media/back_hero.jpg": "/static/media/back_hero.2233d6c193c3f36d9d39.jpg",
+    "static/media/breif_1.png": "/static/media/breif_1.b2fec0fda901f2f85a16.png",
+    "static/media/breif_2.png": "/static/media/breif_2.9d6fb1eaf964960626a1.png",
+    "static/media/breif_3.png": "/static/media/breif_3.501b68c7e214f0de49d2.png",
+    "static/media/logo_web_zynqz.png": "/static/media/logo_web_zynqz.b089ca49c43b466ca4c7.png",
+    "index.html": "/index.html",
+    "main.202631a9.css.map": "/static/css/main.202631a9.css.map",
+    "main.3b302c29.js.map": "/static/js/main.3b302c29.js.map",
+    "453.f34213be.chunk.js.map": "/static/js/453.f34213be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.202631a9.css",
-    "static/js/main.1fb902e8.js"
+    "static/js/main.3b302c29.js"
   ]
 }
