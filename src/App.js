@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import { Menu, X, ChevronRight, Sparkles, Zap, Shield } from 'lucide-react';
-import heroTexture from './assets/back_hero.jpg';
+import heroTexture from './assets/back_hero.png';
 import logo from './assets/logo_web_zynqz.png';
 
 import product1 from './assets/breif_1.png';
 import product2 from './assets/breif_2.png';
 import product3 from './assets/breif_3.png';
+import companyDoc from './assets/company_registration.png'; // replace with your actual file name
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +16,15 @@ export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroFade, setHeroFade] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSending, setIsSending] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [formSuccess, setFormSuccess] = useState('');
 
   const productImages = [product1, product2, product3];
 
@@ -65,8 +76,55 @@ export default function Portfolio() {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormError('');
+    setFormSuccess('');
+
+    const { name, email, subject, message } = formData;
+
+    if (!name || !email || !subject || !message) {
+      setFormError('Please fill in all the fields before sending.');
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+
+    setIsSending(true);
+    try {
+      await emailjs.send(
+        'service_319hkhr',
+        'template_deyxx3d',
+        {
+          from_name: name,
+          reply_to: email,
+          subject,
+          message,
+          to_email: 'zynqzhelp@gmail.com',
+        },
+        'PlCwr07WeOQd9lvUW'
+      );
+
+      setFormSuccess('Thank you for your message! We will get back to you soon.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setFormError('Something went wrong while sending your message. Please try again later.');
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white text-black font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[#2f3a64] font-sans overflow-x-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div 
@@ -99,7 +157,7 @@ export default function Portfolio() {
                 {/* Placeholder for your logo - Replace this div with <img> */}
                 <div className="relative">
     {/* Replace placeholder with your image */}
-    <img src={logo} alt="Company Logo" className="h-8 sm:h-10 md:h-9 lg:h-10 w-auto transition-all duration-300 group-hover:scale-105" />
+    <img src={logo} alt="Company Logo" className="h-10 sm:h-12 md:h-12 lg:h-14 w-auto transition-all duration-300 group-hover:scale-105" />
   </div>
                 {/* Uncomment below and add your logo path */}
                 {/* <img src="/path-to-your-logo.png" alt="Company Logo" className="h-12 w-auto transition-all duration-300 group-hover:scale-105" /> */}
@@ -112,13 +170,13 @@ export default function Portfolio() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`relative text-sm font-medium tracking-wide transition-colors hover:text-black ${
-                    activeSection === item.toLowerCase() ? 'text-black' : 'text-gray-600'
+                  className={`relative text-sm font-medium tracking-wide transition-colors hover:text-[#2f3a64] ${
+                    activeSection === item.toLowerCase() ? 'text-[#2f3a64]' : 'text-[#2f3a64]/70'
                   }`}
                 >
                   {item}
                   {activeSection === item.toLowerCase() && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-black animate-expand" />
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#efc07f] animate-expand" />
                   )}
                 </button>
               ))}
@@ -169,7 +227,7 @@ export default function Portfolio() {
   <div className="absolute inset-0 hero-bg-shape" />
 
   {/* Content */}
-  <div className="relative z-10 max-w-7xl mx-auto px-4 text-center text-black">
+  <div className="relative z-10 max-w-7xl mx-auto px-4 text-center text-[#2f3a64]">
 
           
           <div className="space-y-8">
@@ -197,8 +255,8 @@ export default function Portfolio() {
               className="mt-7 flex flex-col items-center gap-8 animate-fade-in-up opacity-0"
               style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}
             >
-              <img src={logo} alt="ZynQz Logo" className="w-[clamp(160px,40vw,440px)] h-auto" />
-              <span className="text-2xl justify-center font-bold tracking-[1.8em]">ZynQz</span>
+              <img src={logo} alt="ZynQz Logo" className="w-[clamp(200px,45vw,520px)] h-auto" />
+              {/* <span className="text-2xl justify-center font-bold tracking-[1.8em]">ZynQz</span> */}
             </div>
 
             {/* Subheading */}
@@ -210,20 +268,21 @@ export default function Portfolio() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0" style={{ animationDelay: '700ms', animationFillMode: 'forwards' }}>
               <button
                 onClick={() => scrollToSection('products')}
-                className="group bg-black text-white px-8 py-4 text-lg font-medium hover:bg-gray-900 transition-all hover:scale-105 inline-flex items-center shadow-lg"
+                className="group bg-[#2f3a64] text-white px-8 py-4 text-lg font-medium hover:bg-[#2f3a64]/90 transition-all hover:scale-105 inline-flex items-center shadow-lg"
               >
                 Explore Our Products
                 <ChevronRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
               </button>
               <button
                 onClick={() => scrollToSection('about')}
-                className="group border-2 border-black text-black px-8 py-4 text-lg font-medium hover:bg-black hover:text-white transition-all hover:scale-105 inline-flex items-center"
+                className="group border-2 border-[#2f3a64] text-[#2f3a64] px-8 py-4 text-lg font-medium hover:bg-[#2f3a64] hover:text-white transition-all hover:scale-105 inline-flex items-center"
               >
                 Learn More
               </button>
             </div>
 
-            {/* Floating Icons */}
+            {/* Floating Icons - commented out as requested */}
+            {false && (
             <div className="flex justify-center gap-16 mt-28 animate-fade-in opacity-0" style={{ animationDelay: '900ms', animationFillMode: 'forwards' }}>
               {[
                 { icon: Sparkles, label: 'Innovation' },
@@ -242,13 +301,14 @@ export default function Portfolio() {
                 </div>
               ))}
             </div>
+            )}
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-black rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-black rounded-full mt-2 animate-scroll"></div>
+          <div className="w-6 h-10 border-2 border-[#efc07f] rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-[#efc07f] rounded-full mt-2 animate-scroll"></div>
           </div>
         </div>
       </section>
@@ -258,13 +318,13 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <div className="inline-block bg-black text-white px-4 py-1 text-sm font-medium">
+              <div className="inline-block bg-[#2f3a64] text-white px-4 py-1 text-sm font-medium">
                 About Us
               </div>
               <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
                 Crafting Excellence Through Innovation
               </h2>
-              <div className="w-20 h-1 bg-black"></div>
+              <div className="w-20 h-1 bg-[#efc07f]"></div>
               <p className="text-lg text-gray-700 leading-relaxed">
                 We are pioneers in creating products that make a difference. Our journey began with a simple vision: to develop solutions that seamlessly integrate into modern lifestyles while maintaining the highest standards of quality and design.
               </p>
@@ -279,23 +339,20 @@ export default function Portfolio() {
                   <div className="text-sm text-gray-600">Quality Assured</div>
                 </div>
                 <div className="text-center p-6 bg-white shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="text-4xl font-bold mb-2">2025</div>
+                  <div className="text-4xl font-bold mb-2">2026</div>
                   <div className="text-sm text-gray-600">Established</div>
                 </div>
               </div>
             </div>
 
-            {/* Visual Element */}
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden group">
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                <div className="text-center z-10">
-                  <div className="text-8xl mb-4 animate-pulse">🚀</div>
-                  <p className="text-xl font-medium">Innovation First</p>
-                </div>
-                {/* Decorative elements */}
-                <div className="absolute top-10 right-10 w-20 h-20 border-4 border-black transform rotate-45 animate-spin-slow"></div>
-                <div className="absolute bottom-10 left-10 w-16 h-16 bg-black transform rotate-12"></div>
+            {/* Company Registration Document Image */}
+            <div className="relative flex items-center justify-center">
+              <div className="w-full max-w-md aspect-[3/4] bg-white border border-gray-200 shadow-lg overflow-hidden">
+                <img
+                  src={companyDoc}
+                  alt="Company registration document"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
           </div>
@@ -321,7 +378,7 @@ export default function Portfolio() {
             ].map((value, idx) => (
               <div 
                 key={idx} 
-                className="group p-8 bg-white border-2 border-gray-100 hover:border-black transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                className="group p-8 bg-white border-2 border-gray-100 hover:border-[#2f3a64] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
               >
                 <value.icon className="mb-4 group-hover:scale-110 transition-transform" size={32} />
                 <h3 className="text-xl font-bold mb-3">{value.title}</h3>
@@ -336,11 +393,11 @@ export default function Portfolio() {
       <section id="products" className="relative py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-block bg-black text-white px-4 py-1 text-sm font-medium mb-4">
+            <div className="inline-block bg-[#2f3a64] text-white px-4 py-1 text-sm font-medium mb-4">
               Our Collection
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">Featured Products</h2>
-            <div className="w-20 h-1 bg-black mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-[#efc07f] mx-auto mb-6"></div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Discover our first premium offering - carefully designed with your comfort and lifestyle in mind
             </p>
@@ -348,7 +405,7 @@ export default function Portfolio() {
 
           {/* Product Showcase */}
           <div className="max-w-5xl mx-auto mb-20">
-  <div className="group bg-white overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-black">
+  <div className="group bg-white overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-[#2f3a64]">
     <div className="grid md:grid-cols-2">
       {/* Product Image Carousel */}
       <div className="relative h-96 md:h-[500px] overflow-hidden bg-gray-50">
@@ -372,7 +429,7 @@ export default function Portfolio() {
               onClick={() => setCurrentSlide(idx)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 idx === currentSlide 
-                  ? 'bg-black scale-110' 
+                  ? 'bg-[#2f3a64] scale-110' 
                   : 'bg-white/70 hover:bg-white'
               }`}
             />
@@ -397,7 +454,7 @@ export default function Portfolio() {
       {/* Product Details */}
       <div className="p-10 flex flex-col justify-center space-y-6">
         <div>
-          <span className="inline-block bg-gray-100 text-black px-3 py-1 text-xs font-bold tracking-wider mb-4">
+          <span className="inline-block bg-gray-100 text-[#2f3a64] px-3 py-1 text-xs font-bold tracking-wider mb-4">
             PREMIUM COLLECTION
           </span>
           <h3 className="text-3xl lg:text-4xl font-bold mb-3">Women's Essentials</h3>
@@ -416,13 +473,13 @@ export default function Portfolio() {
             'Eco-friendly materials'
           ].map((feature, idx) => (
             <div key={idx} className="flex items-start group/item">
-              <div className="w-2 h-2 bg-black mt-2 mr-3 flex-shrink-0 group-hover/item:scale-150 transition-transform"></div>
+              <div className="w-2 h-2 bg-[#2f3a64] mt-2 mr-3 flex-shrink-0 group-hover/item:scale-150 transition-transform"></div>
               <span className="text-gray-700">{feature}</span>
             </div>
           ))}
         </div>
 
-        <button className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-all hover:scale-105 inline-flex items-center justify-center group/btn w-full sm:w-auto shadow-lg">
+        <button className="bg-[#2f3a64] text-white px-8 py-4 font-medium hover:bg-[#2f3a64]/90 transition-all hover:scale-105 inline-flex items-center justify-center group/btn w-full sm:w-auto shadow-lg">
           Discover More
           <ChevronRight className="ml-2 group-hover/btn:translate-x-1 transition-transform" size={20} />
         </button>
@@ -433,7 +490,7 @@ export default function Portfolio() {
 
           {/* Coming Soon Teaser */}
           <div className="text-center max-w-2xl mx-auto">
-            <div className="relative p-12 border-2 border-dashed border-gray-300 hover:border-black transition-colors group">
+            <div className="relative p-12 border-2 border-dashed border-gray-300 hover:border-[#2f3a64] transition-colors group">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white px-4">
                 <Sparkles className="inline animate-pulse" size={20} />
               </div>
@@ -450,7 +507,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-32 bg-black text-white overflow-hidden">
+      <section id="contact" className="relative py-32 bg-[#2f3a64] text-white overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-40 h-40 border-4 border-white rounded-full animate-pulse"></div>
@@ -459,7 +516,7 @@ export default function Portfolio() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block bg-white text-black px-4 py-1 text-sm font-medium mb-4">
+            <div className="inline-block bg-[#efc07f] text-[#2f3a64] px-4 py-1 text-sm font-medium mb-4">
               Get In Touch
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">Let's Connect</h2>
@@ -470,50 +527,78 @@ export default function Portfolio() {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-6">
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder="Your Name"
-                  className="w-full px-6 py-4 bg-transparent text-white border-2 border-gray-600 focus:border-white focus:outline-none transition-colors"
+                  className="w-full px-6 py-4 bg-transparent text-white border-2 border-white/40 focus:border-[#efc07f] focus:outline-none transition-colors"
+                  required
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="Your Email"
-                  className="w-full px-6 py-4 bg-transparent text-white border-2 border-gray-600 focus:border-white focus:outline-none transition-colors"
+                  className="w-full px-6 py-4 bg-transparent text-white border-2 border-white/40 focus:border-[#efc07f] focus:outline-none transition-colors"
+                  required
                 />
               </div>
               <input
                 type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
                 placeholder="Subject"
-                className="w-full px-6 py-4 bg-transparent text-white border-2 border-gray-600 focus:border-white focus:outline-none transition-colors"
+                className="w-full px-6 py-4 bg-transparent text-white border-2 border-white/40 focus:border-[#efc07f] focus:outline-none transition-colors"
+                required
               />
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 placeholder="Your Message"
                 rows="6"
-                className="w-full px-6 py-4 bg-transparent text-white border-2 border-gray-600 focus:border-white focus:outline-none transition-colors resize-none"
+                className="w-full px-6 py-4 bg-transparent text-white border-2 border-white/40 focus:border-[#efc07f] focus:outline-none transition-colors resize-none"
+                required
               ></textarea>
+
+              {formError && (
+                <p className="text-sm text-red-300">{formError}</p>
+              )}
+              {formSuccess && (
+                <p className="text-sm text-emerald-200">{formSuccess}</p>
+              )}
+
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('Thank you for your message! We will get back to you soon.');
-                }}
-                className="w-full bg-white text-black px-8 py-4 font-medium hover:bg-gray-200 transition-all hover:scale-105 shadow-lg group"
+                type="submit"
+                disabled={isSending}
+                className={`w-full px-8 py-4 font-medium transition-all hover:scale-105 shadow-lg group inline-flex items-center justify-center ${
+                  isSending
+                    ? 'bg-[#efc07f]/60 text-[#2f3a64]/70 cursor-not-allowed'
+                    : 'bg-[#efc07f] text-[#2f3a64] hover:bg-[#efc07f]/90'
+                }`}
               >
                 <span className="inline-flex items-center justify-center">
-                  Send Message
-                  <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  {isSending ? 'Sending...' : 'Send Message'}
+                  {!isSending && (
+                    <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  )}
                 </span>
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Contact Info Cards */}
           <div className="grid sm:grid-cols-3 gap-8 mt-24">
             {[
-              { title: 'Email', info: 'info@yourcompany.com', icon: '📧' },
-              { title: 'Phone', info: '+1 (555) 123-4567', icon: '📱' },
-              { title: 'Location', info: '123 Innovation Street, City', icon: '📍' }
+              { title: 'Email', info: 'zynqz@zyznqz.com', icon: '📧' },
+              { title: 'Phone', info: '+94 70 200 9 444', icon: '📱' },
+              { title: 'Location', info: 'Colombo, Sri Lanka', icon: '📍' }
             ].map((contact, idx) => (
               <div 
                 key={idx} 
@@ -529,34 +614,34 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 border-t border-gray-800">
+      <footer className="bg-[#2f3a64] text-white py-12 border-t border-[#1f2746]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="flex-shrink-0">
               {/* Logo - Replace with your PNG */}
-              <div className="w-40 h-12 bg-white flex items-center justify-center">
-                <span className="text-black font-bold text-xl tracking-wider">ZynQz</span>
+              <div className="w-40 h-12 bg-[#efc07f] flex items-center justify-center">
+                <span className="text-[#2f3a64] font-bold text-xl tracking-wider">ZynQz</span>
               </div>
               {/* <img src="/path-to-your-logo.png" alt="Company Logo" className="h-12 w-auto" /> */}
             </div>
             
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <button onClick={() => scrollToSection('home')} className="hover:text-gray-400 transition-colors">
+              <button onClick={() => scrollToSection('home')} className="hover:text-[#efc07f] transition-colors">
                 Home
               </button>
-              <button onClick={() => scrollToSection('about')} className="hover:text-gray-400 transition-colors">
+              <button onClick={() => scrollToSection('about')} className="hover:text-[#efc07f] transition-colors">
                 About
               </button>
-              <button onClick={() => scrollToSection('products')} className="hover:text-gray-400 transition-colors">
+              <button onClick={() => scrollToSection('products')} className="hover:text-[#efc07f] transition-colors">
                 Products
               </button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-gray-400 transition-colors">
+              <button onClick={() => scrollToSection('contact')} className="hover:text-[#efc07f] transition-colors">
                 Contact
               </button>
             </div>
 
             <p className="text-gray-400 text-sm">
-              © 2025 ZynQz. All rights reserved.
+              © 2026 ZynQz. All rights reserved.
             </p>
           </div>
         </div>
@@ -648,8 +733,9 @@ export default function Portfolio() {
         background-repeat: no-repeat;
         background-size: cover;   
         background-position: center;
-        opacity: 0.12;
-        filter: grayscale(100%);
+        opacity: 0.16;
+        background-color: rgba(47, 58, 100, 0.7); /* #2f3a64 overlay */
+        mix-blend-mode: multiply;
       }
 
 
