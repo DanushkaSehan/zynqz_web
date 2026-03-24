@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# ZynQz — Official Company Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The official website for **ZynQz Pvt Ltd**, a registered company based in Colombo, Sri Lanka. Built with React and Tailwind CSS, the site showcases ZynQz's services, apparel products, and company information.
 
-## Available Scripts
+🌐 **Live Site:** [www.zynqz.com](https://www.zynqz.com)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Pages & Sections
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Home Page (`/`)
+| Section | Description |
+|---|---|
+| **Hero** | Animated hero with background texture and tagline |
+| **Our Apparel** | Product image slideshow with highlights |
+| **About Us** | Company background and values |
+| **Contact** | EmailJS-powered contact form |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Services Page (`/services`)
+| Section | Description |
+|---|---|
+| **Product Development** | Bonded garments, sewing, molding, prototyping support |
+| **Machinery Solutions** | Machinery selection and production process guidance |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+| Technology | Version | Purpose |
+|---|---|---|
+| React | ^19.2.3 | UI framework |
+| React Router DOM | ^7.13.2 | Page routing |
+| Tailwind CSS | ^3.4.17 | Utility-first styling |
+| EmailJS | ^4.4.1 | Contact form email delivery |
+| Lucide React | ^0.562.0 | Icons |
+| gh-pages | ^6.3.0 | GitHub Pages deployment |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Clone the repository
+git clone https://github.com/DanushkaSehan/zynqz_web.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Navigate into the project
+cd zynqz_web
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install dependencies
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Run Locally
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Opens [http://localhost:3000](http://localhost:3000) in your browser. The page hot-reloads on file changes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Build for Production
 
-### Code Splitting
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Outputs an optimized production build to the `/build` folder.
 
-### Analyzing the Bundle Size
+### Deploy to GitHub Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run deploy
+```
 
-### Making a Progressive Web App
+Runs `npm run build` first, then publishes the `/build` folder to the `gh-pages` branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+zynqz_web/
+├── public/
+│   └── index.html
+├── src/
+│   ├── assets/                  # Images and logo
+│   │   ├── logo_web_zynqz.png
+│   │   ├── back_hero.png
+│   │   ├── breif_1.png
+│   │   ├── breif_2.png
+│   │   ├── breif_3.png
+│   │   ├── machinery_1.jpeg
+│   │   └── machinery_2.jpeg
+│   ├── App.js                   # Main app + Home page
+│   ├── ServicesPage.js          # Services page (Product Dev + Machinery)
+│   ├── App.css
+│   └── index.js
+├── package.json
+├── tailwind.config.js
+└── README.md
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Color Theme
 
-### `npm run build` fails to minify
+| Color | Hex | Usage |
+|---|---|---|
+| Navy Blue | `#2f3a64` | Primary — headings, navbar, buttons |
+| Gold | `#efc07f` | Accent — highlights, underlines, icons |
+| White | `#ffffff` | Backgrounds, text on dark |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Contact & Social
+
+| Platform | Link |
+|---|---|
+| LinkedIn | [ZynQz Pvt Ltd](https://www.linkedin.com/company/zynqz-pvt-ltd/) |
+| Instagram | [@zynqz](https://www.instagram.com/zynqz/) |
+| WhatsApp | [+94 70 200 9444](https://wa.me/94702009444) |
+| Email | zynqzhelp@gmail.com |
+
+---
+
+© 2026 ZynQz Pvt Ltd. All rights reserved.
