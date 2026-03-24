@@ -82,7 +82,7 @@ export default function ServicesPage() {
               <img src={logo} alt="ZynQz Logo" className="h-10 sm:h-12 lg:h-14 w-auto transition-all duration-300 group-hover:scale-105" />
             </div>
 
-            {/* Desktop Menu — centered */}
+            {/* Desktop Menu - centered */}
             <div className="hidden md:flex justify-center items-center space-x-6 md:space-x-6">
               {beforeServices.map((item) => (
                 <a key={item.label} href={item.href} className="relative text-sm font-medium tracking-wide whitespace-nowrap text-[#2f3a64]/70 hover:text-[#2f3a64] transition-colors">
@@ -125,7 +125,7 @@ export default function ServicesPage() {
               ))}
             </div>
 
-            {/* Mobile Menu Button — right */}
+            {/* Mobile Menu Button - right */}
             <div className="flex justify-end">
               <button
                 className={`md:hidden z-50 transition-transform hover:scale-110 ${scrolled ? 'text-[#2f3a64]' : 'text-white'}`}
@@ -193,7 +193,7 @@ export default function ServicesPage() {
           </h1>
           <div className="w-20 h-1 bg-[#efc07f] mx-auto mb-6"></div>
           <p className="text-lg sm:text-xl text-[#2f3a64]/70 leading-relaxed">
-            From concept evaluation to machinery selection — we provide the expertise to take your apparel product from idea to production-ready reality.
+            From concept evaluation to machinery selection - we provide the expertise to take your apparel product from idea to production-ready reality.
           </p>
 
           {/* Section jump links */}
@@ -276,7 +276,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">The Right Machinery for the Right Product</h2>
             <div className="w-16 h-1 bg-[#efc07f] mx-auto mb-6"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We provide guidance on selecting the right machinery and processes to support your product requirements — so you invest in exactly what you need.
+              We provide guidance on selecting the right machinery and processes to support your product requirements - so you invest in exactly what you need.
             </p>
           </div>
 

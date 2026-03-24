@@ -179,7 +179,7 @@ function HomePage() {
               <img src={logo} alt="ZynQz Logo" className="h-10 sm:h-12 lg:h-14 w-auto transition-all duration-300 group-hover:scale-105" />
             </div>
 
-            {/* Desktop Menu — centered */}
+            {/* Desktop Menu - centered */}
             <div className="hidden md:flex justify-center items-center space-x-6">
               {/* Home */}
               {[{ label: 'Home', id: 'home' }].map((item) => (
@@ -245,7 +245,7 @@ function HomePage() {
               ))}
             </div>
 
-            {/* Mobile Menu Button — right column */}
+            {/* Mobile Menu Button - right column */}
             <div className="flex justify-end">
               <button
                 className={`md:hidden z-50 transition-transform hover:scale-110 ${scrolled ? 'text-[#2f3a64]' : 'text-white'}`}
@@ -377,7 +377,7 @@ function HomePage() {
               className="text-lg sm:text-xl text-[#2f3a64]/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0"
               style={{ animationDelay: '550ms', animationFillMode: 'forwards' }}
             >
-              From bonding and advanced sewing to molding and scalable manufacturing — we help bring your concepts to life.
+              From bonding and advanced sewing to molding and scalable manufacturing - we help bring your concepts to life.
             </p>
 
             {/* CTA Buttons */}
@@ -402,7 +402,7 @@ function HomePage() {
               className="text-sm text-[#2f3a64]/50 italic animate-fade-in-up opacity-0"
               style={{ animationDelay: '850ms', animationFillMode: 'forwards' }}
             >
-              #BondingExcellence isn't bought with machines — it's built with know-how.
+              #BondingExcellence isn't bought with machines - it's built with know-how.
             </p>
           </div>
         </div>
@@ -504,8 +504,8 @@ function HomePage() {
             </div>
             <div className="grid grid-cols-2 gap-6">
               {[
-                { title: 'Production-Ready', desc: 'Not just prototypes — we take you all the way to manufacturing.' },
-                { title: 'Expert Know-How', desc: '#BondingExcellence isn\'t bought with machines — it\'s built with knowledge.' },
+                { title: 'Production-Ready', desc: 'Not just prototypes - we take you all the way to manufacturing.' },
+                { title: 'Expert Know-How', desc: '#BondingExcellence isn\'t bought with machines - it\'s built with knowledge.' },
                 { title: 'Scalable Solutions', desc: 'Every development decision is made with scale in mind.' },
                 { title: 'End-to-End Support', desc: 'From concept evaluation to production readiness.' },
               ].map((card, idx) => (
@@ -546,7 +546,7 @@ function HomePage() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">Built by Us. Backed by Experience.</h2>
             <div className="w-20 h-1 bg-[#efc07f] mx-auto mb-6"></div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our apparel line represents our capability in action — combining design, engineering, and advanced construction techniques.
+              Our apparel line represents our capability in action - combining design, engineering, and advanced construction techniques.
             </p>
           </div>
 
@@ -595,7 +595,7 @@ function HomePage() {
                     </span>
                     <h3 className="text-3xl lg:text-4xl font-bold mb-3">Women's Essentials</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Our inaugural apparel line — built using advanced bonding and construction techniques. Designed to showcase what's possible when engineering meets design.
+                      Our inaugural apparel line - built using advanced bonding and construction techniques. Designed to showcase what's possible when engineering meets design.
                     </p>
                   </div>
                   <div className="space-y-3">
@@ -632,7 +632,7 @@ function HomePage() {
               </div>
               <h4 className="text-2xl font-bold mb-3 text-[#2f3a64]">More Pieces Coming Soon</h4>
               <div className="w-12 h-0.5 bg-[#efc07f] mx-auto mb-4"></div>
-              <p className="text-gray-600 mb-2">New additions to our apparel line — each built to demonstrate the possibilities of advanced construction.</p>
+              <p className="text-gray-600 mb-2">New additions to our apparel line - each built to demonstrate the possibilities of advanced construction.</p>
               <p className="text-sm text-gray-400">Stay tuned for upcoming launches</p>
             </div>
           </div>
@@ -653,7 +653,7 @@ function HomePage() {
                 With a background in manufacturing, automation, and apparel engineering, we understand what it takes to move from concept to production.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our focus is simple — helping brands and manufacturers develop products that are not only innovative, but also practical to produce at scale.
+                Our focus is simple - helping brands and manufacturers develop products that are not only innovative, but also practical to produce at scale.
               </p>
               <div className="grid grid-cols-2 gap-6 pt-4">
                 <div className="text-center p-6 bg-white shadow-lg hover:shadow-xl transition-shadow border-b-4 border-[#efc07f]">
@@ -674,7 +674,7 @@ function HomePage() {
             {[
               {
                 title: 'Manufacturing Expertise',
-                desc: 'Deep roots in manufacturing and automation — we know what it takes to build at scale.',
+                desc: 'Deep roots in manufacturing and automation - we know what it takes to build at scale.',
                 icon: Shield,
               },
               {
@@ -684,7 +684,7 @@ function HomePage() {
               },
               {
                 title: 'Hands-On Approach',
-                desc: 'We work closely with every client — practical, direct, and results-focused.',
+                desc: 'We work closely with every client - practical, direct, and results-focused.',
                 icon: Sparkles,
               },
             ].map((value, idx) => (
