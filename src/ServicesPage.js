@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronRight, ChevronDown, Zap, Shield, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, Zap, Shield } from 'lucide-react';
 import logo from './assets/logo_web_zynqz.png';
 import machinery1 from './assets/machinery_1.jpeg';
 import machinery2 from './assets/machinery_2.jpeg';
