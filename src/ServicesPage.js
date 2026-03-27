@@ -7,7 +7,6 @@ import machinery2 from './assets/machinery_2.jpeg';
 
 export default function ServicesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('product-development');
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef(null);
@@ -51,7 +50,6 @@ export default function ServicesPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
       const sections = ['product-development', 'machinery-solutions'];
       const current = sections.find((section) => {
         const el = document.getElementById(section);
