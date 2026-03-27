@@ -42,6 +42,11 @@ function HomePage() {
   const [formSuccess, setFormSuccess] = useState('');
 
   const productImages = [product1, product2, product3];
+  const productAlts = [
+    "ZynQz Women's Essentials - advanced bonding construction apparel",
+    "ZynQz Women's Essentials - precision-engineered garment detail",
+    "ZynQz Women's Essentials - production-ready apparel design",
+  ];
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -147,6 +152,10 @@ function HomePage() {
       setIsSending(false);
     }
   };
+
+  useEffect(() => {
+    document.title = 'ZynQz | Turning Apparel Ideas Into Production-Ready Reality';
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-[#2f3a64] font-sans overflow-x-hidden">
@@ -334,6 +343,7 @@ function HomePage() {
         </div>
       </nav>
 
+      <main>
       {/* Hero Section */}
      <section
   id="home"
@@ -565,7 +575,7 @@ function HomePage() {
                     <img
                       key={idx}
                       src={img}
-                      alt={`Product ${idx + 1}`}
+                      alt={productAlts[idx]}
                       className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
                         idx === currentSlide ? 'opacity-100' : 'opacity-0'
                       }`}
@@ -852,6 +862,7 @@ function HomePage() {
           </div>
         </div>
       </footer>
+      </main>
 
       {/* CSS Animations */}
       <style jsx>{`

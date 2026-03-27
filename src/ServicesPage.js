@@ -15,6 +15,19 @@ export default function ServicesPage() {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = 'Services | ZynQz – Apparel Product Development & Machinery Solutions';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'ZynQz services: apparel product development using bonding, advanced sewing and molding techniques, plus expert machinery selection and process setup for manufacturers.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://www.zynqz.com/services');
+    return () => {
+      document.title = 'ZynQz | Turning Apparel Ideas Into Production-Ready Reality';
+      if (metaDesc) metaDesc.setAttribute('content', 'ZynQz - Turning apparel ideas into production-ready reality. From bonding and advanced sewing to molding and scalable manufacturing.');
+      if (canonical) canonical.setAttribute('href', 'https://www.zynqz.com/');
+    };
+  }, []);
+
+  useEffect(() => {
     const hash = location.hash.replace('#', '');
     if (hash) {
       setTimeout(() => {
@@ -73,9 +86,9 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-white text-[#2f3a64] font-sans overflow-x-hidden">
 
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 md:bg-white/95 backdrop-blur-md shadow-lg' : 'bg-[#2f3a64] md:bg-white/95 md:backdrop-blur-md md:shadow-sm'}`}>
+      <nav className="fixed w-full z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:grid md:grid-cols-3">
+          <div className="flex items-center justify-between h-20 lg:grid lg:grid-cols-3">
 
             {/* Logo */}
             <div className="flex-shrink-0 cursor-pointer group" onClick={() => navigate('/')}>
@@ -83,7 +96,7 @@ export default function ServicesPage() {
             </div>
 
             {/* Desktop Menu - centered */}
-            <div className="hidden md:flex justify-center items-center space-x-6 md:space-x-6">
+            <div className="hidden lg:flex justify-center items-center space-x-6">
               {beforeServices.map((item) => (
                 <a key={item.label} href={item.href} className="relative text-sm font-medium tracking-wide whitespace-nowrap text-[#2f3a64]/70 hover:text-[#2f3a64] transition-colors">
                   {item.label}
@@ -128,7 +141,7 @@ export default function ServicesPage() {
             {/* Mobile Menu Button - right */}
             <div className="flex justify-end">
               <button
-                className={`md:hidden z-50 transition-transform hover:scale-110 ${scrolled ? 'text-[#2f3a64]' : 'text-white'}`}
+                className="lg:hidden z-50 transition-transform hover:scale-110 text-[#2f3a64]"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -138,19 +151,19 @@ export default function ServicesPage() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden absolute w-full bg-[#2f3a64] border-t border-white/20 transition-all duration-300 ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className={`lg:hidden absolute w-full bg-white/90 backdrop-blur-md border-t border-[#2f3a64]/10 shadow-lg transition-all duration-300 ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="px-4 py-6 space-y-1">
             {/* Home */}
             {beforeServices.map((item) => (
               <a key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}
-                className="flex items-center w-full text-left px-3 py-3 text-base font-medium rounded text-white/80 hover:text-white hover:bg-white/10 transition-all">
+                className="flex items-center w-full text-left px-3 py-3 text-base font-medium rounded text-[#2f3a64]/70 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10 transition-all">
                 <span className="w-1.5 h-1.5 mr-3 flex-shrink-0" />
                 {item.label}
               </a>
             ))}
             {/* Services */}
             <div>
-              <div className="flex items-center justify-between w-full px-3 py-3 text-base font-medium rounded text-white bg-white/10">
+              <div className="flex items-center justify-between w-full px-3 py-3 text-base font-medium rounded text-[#2f3a64] bg-[#2f3a64]/10">
                 <span className="flex items-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#efc07f] mr-3 flex-shrink-0" />
                   Services
@@ -165,7 +178,7 @@ export default function ServicesPage() {
                   <button
                     key={item.id}
                     onClick={() => { scrollToSection(item.id); setIsMenuOpen(false); }}
-                    className={`block w-full text-left px-3 py-2 text-sm rounded transition-all ${activeSection === item.id ? 'text-white font-semibold' : 'text-white/70 hover:text-white hover:bg-white/10'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm rounded transition-all ${activeSection === item.id ? 'text-[#2f3a64] font-semibold' : 'text-[#2f3a64]/60 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10'}`}
                   >
                     {item.label}
                   </button>
@@ -175,7 +188,7 @@ export default function ServicesPage() {
             {/* Our Apparel, About Us, Contact */}
             {afterServices.map((item) => (
               <a key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}
-                className="flex items-center w-full text-left px-3 py-3 text-base font-medium rounded text-white/80 hover:text-white hover:bg-white/10 transition-all">
+                className="flex items-center w-full text-left px-3 py-3 text-base font-medium rounded text-[#2f3a64]/70 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10 transition-all">
                 <span className="w-1.5 h-1.5 mr-3 flex-shrink-0" />
                 {item.label}
               </a>
@@ -259,7 +272,7 @@ export default function ServicesPage() {
             <div className="relative overflow-hidden shadow-xl border border-gray-100 group">
               <img
                 src={machinery2}
-                alt="Product Development process"
+                alt="ZynQz apparel product development - bonding and sewing construction process"
                 className="w-full h-full object-cover min-h-[420px] group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2f3a64]/40 via-transparent to-transparent" />
@@ -296,7 +309,7 @@ export default function ServicesPage() {
 
           <div className="max-w-2xl mx-auto">
             <div className="overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 group">
-              <img src={machinery1} alt="Machinery equipment" className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={machinery1} alt="ZynQz apparel machinery solutions - industrial sewing and bonding equipment" className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
           </div>
         </div>
