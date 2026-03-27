@@ -410,8 +410,7 @@ function HomePage() {
 
         {/* Scroll Indicator */}
         <button
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10 transition-opacity duration-300 cursor-pointer hover:scale-110 active:scale-95"
-          style={{ opacity: heroFade }}
+          className={`fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10 transition-opacity duration-300 cursor-pointer hover:scale-110 active:scale-95 ${scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           onClick={() => scrollToSection('apparel')}
           aria-label="Scroll to next section"
         >
