@@ -26,6 +26,7 @@ function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroFade, setHeroFade] = useState(1);
@@ -172,15 +173,15 @@ function HomePage() {
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-[#2f3a64] md:bg-transparent'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white/70 backdrop-blur-md lg:bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:grid md:grid-cols-3">
+          <div className="flex items-center justify-between h-20 lg:grid lg:grid-cols-3">
             <div className="flex-shrink-0 cursor-pointer group" onClick={() => scrollToSection('home')}>
               <img src={logo} alt="ZynQz Logo" className="h-10 sm:h-12 lg:h-14 w-auto transition-all duration-300 group-hover:scale-105" />
             </div>
 
             {/* Desktop Menu - centered */}
-            <div className="hidden md:flex justify-center items-center space-x-6">
+            <div className="hidden lg:flex justify-center items-center space-x-6">
               {/* Home */}
               {[{ label: 'Home', id: 'home' }].map((item) => (
                 <button
@@ -248,8 +249,8 @@ function HomePage() {
             {/* Mobile Menu Button - right column */}
             <div className="flex justify-end">
               <button
-                className={`md:hidden z-50 transition-transform hover:scale-110 ${scrolled ? 'text-[#2f3a64]' : 'text-white'}`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="lg:hidden z-50 transition-transform hover:scale-110 text-[#2f3a64]"
+                onClick={() => { setIsMenuOpen(!isMenuOpen); setMobileServicesOpen(false); }}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -258,7 +259,7 @@ function HomePage() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden absolute w-full bg-[#2f3a64] border-t border-white/20 transition-all duration-300 ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className={`lg:hidden absolute w-full bg-white/90 backdrop-blur-md border-t border-[#2f3a64]/10 shadow-lg transition-all duration-300 ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="px-4 py-6 space-y-1">
             {/* Home */}
             {[{ label: 'Home', id: 'home' }].map((item) => (
@@ -267,8 +268,8 @@ function HomePage() {
                 onClick={() => scrollToSection(item.id)}
                 className={`flex items-center w-full text-left px-3 py-3 text-base font-medium rounded transition-all ${
                   activeSection === item.id
-                    ? 'text-white bg-white/10'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                    ? 'text-[#2f3a64] bg-[#2f3a64]/10'
+                    : 'text-[#2f3a64]/70 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10'
                 }`}
               >
                 {activeSection === item.id
@@ -281,26 +282,26 @@ function HomePage() {
             {/* Services dropdown */}
             <div>
               <button
-                onClick={() => setServicesOpen((o) => !o)}
-                className="flex items-center justify-between w-full text-left px-3 py-3 text-base font-medium rounded text-white/80 hover:text-white hover:bg-white/10 transition-all"
+                onClick={() => setMobileServicesOpen((o) => !o)}
+                className="flex items-center justify-between w-full text-left px-3 py-3 text-base font-medium rounded text-[#2f3a64]/70 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10 transition-all"
               >
                 <span className="flex items-center">
                   <span className="w-1.5 h-1.5 mr-3 flex-shrink-0" />
                   Services
                 </span>
-                <ChevronDown size={14} className={`transition-transform duration-200 text-[#efc07f] ${servicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown size={14} className={`transition-transform duration-200 text-[#efc07f] ${mobileServicesOpen ? 'rotate-180' : ''}`} />
               </button>
-              {servicesOpen && (
+              {mobileServicesOpen && (
                 <div className="ml-6 border-l-2 border-[#efc07f]/60 pl-3 space-y-1">
                   <button
-                    onClick={() => { navigate('/services#product-development'); setIsMenuOpen(false); setServicesOpen(false); }}
-                    className="block w-full text-left px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded transition-all"
+                    onClick={() => { navigate('/services#product-development'); setIsMenuOpen(false); setMobileServicesOpen(false); }}
+                    className="block w-full text-left px-3 py-2 text-sm text-[#2f3a64]/60 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10 rounded transition-all"
                   >
                     Product Development
                   </button>
                   <button
-                    onClick={() => { navigate('/services#machinery-solutions'); setIsMenuOpen(false); setServicesOpen(false); }}
-                    className="block w-full text-left px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded transition-all"
+                    onClick={() => { navigate('/services#machinery-solutions'); setIsMenuOpen(false); setMobileServicesOpen(false); }}
+                    className="block w-full text-left px-3 py-2 text-sm text-[#2f3a64]/60 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10 rounded transition-all"
                   >
                     Machinery Solutions
                   </button>
@@ -318,8 +319,8 @@ function HomePage() {
                 onClick={() => scrollToSection(item.id)}
                 className={`flex items-center w-full text-left px-3 py-3 text-base font-medium rounded transition-all ${
                   activeSection === item.id
-                    ? 'text-white bg-white/10'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                    ? 'text-[#2f3a64] bg-[#2f3a64]/10'
+                    : 'text-[#2f3a64]/70 hover:text-[#2f3a64] hover:bg-[#2f3a64]/10'
                 }`}
               >
                 {activeSection === item.id
@@ -354,44 +355,44 @@ function HomePage() {
   <div className="relative z-10 max-w-7xl mx-auto px-4 text-center text-[#2f3a64]">
 
           
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-8">
             {/* Logo */}
             <div
-              className="mt-7 flex flex-col items-center animate-fade-in-up opacity-0"
+              className="mt-2 sm:mt-7 flex flex-col items-center animate-fade-in-up opacity-0"
               style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}
             >
-              <img src={logo} alt="ZynQz Logo" className="w-[clamp(120px,20vw,200px)] h-auto mb-8" />
+              <img src={logo} alt="ZynQz Logo" className="w-[clamp(80px,15vw,200px)] h-auto mb-2 sm:mb-8" />
             </div>
 
             {/* Headline */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-up opacity-0"
+              className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight animate-fade-in-up opacity-0"
               style={{ animationDelay: '450ms', animationFillMode: 'forwards' }}
             >
-              Turning Apparel Ideas Into<br />
+              Turning Apparel Ideas Into{' '}
               <span className="text-[#efc07f]">Production-Ready Reality</span>
             </h1>
 
             {/* Subtext */}
             <p
-              className="text-lg sm:text-xl text-[#2f3a64]/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0"
+              className="text-base sm:text-xl text-[#2f3a64]/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0"
               style={{ animationDelay: '550ms', animationFillMode: 'forwards' }}
             >
               From bonding and advanced sewing to molding and scalable manufacturing - we help bring your concepts to life.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0" style={{ animationDelay: '700ms', animationFillMode: 'forwards' }}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center animate-fade-in-up opacity-0" style={{ animationDelay: '700ms', animationFillMode: 'forwards' }}>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="group bg-[#2f3a64] text-white px-8 py-4 text-lg font-medium hover:bg-[#2f3a64]/90 transition-all hover:scale-105 inline-flex items-center shadow-lg"
+                className="group bg-[#2f3a64] text-white px-8 py-3 sm:py-4 text-base sm:text-lg font-medium hover:bg-[#2f3a64]/90 transition-all hover:scale-105 inline-flex items-center shadow-lg"
               >
                 Work With Us
                 <ChevronRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
               </button>
               <button
                 onClick={() => scrollToSection('apparel')}
-                className="group border-2 border-[#2f3a64] text-[#2f3a64] px-8 py-4 text-lg font-medium hover:bg-[#2f3a64] hover:text-white transition-all hover:scale-105 inline-flex items-center"
+                className="group border-2 border-[#2f3a64] text-[#2f3a64] px-8 py-3 sm:py-4 text-base sm:text-lg font-medium hover:bg-[#2f3a64] hover:text-white transition-all hover:scale-105 inline-flex items-center"
               >
                 View Our Work
               </button>
@@ -399,7 +400,7 @@ function HomePage() {
 
             {/* Hook line */}
             <p
-              className="text-sm text-[#2f3a64]/50 italic animate-fade-in-up opacity-0"
+              className="hidden sm:block text-sm text-[#2f3a64]/50 italic animate-fade-in-up opacity-0"
               style={{ animationDelay: '850ms', animationFillMode: 'forwards' }}
             >
               #BondingExcellence isn't bought with machines - it's built with know-how.
@@ -408,11 +409,16 @@ function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <button
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10 transition-opacity duration-300 cursor-pointer hover:scale-110 active:scale-95"
+          style={{ opacity: heroFade }}
+          onClick={() => scrollToSection('apparel')}
+          aria-label="Scroll to next section"
+        >
           <div className="w-6 h-10 border-2 border-[#efc07f] rounded-full flex justify-center">
             <div className="w-1 h-3 bg-[#efc07f] rounded-full mt-2 animate-scroll"></div>
           </div>
-        </div>
+        </button>
       </section>
 
       {/* What We Do Section */}
